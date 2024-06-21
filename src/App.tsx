@@ -14,6 +14,10 @@ function App() {
         <button onClick={() => setCount((count) => count - 1)} style={{marginLeft: '10px', border: "1px solid red"}}>
           - Decrement
         </button>
+        <button onClick={() => setCount((count) => count*2)} style={{marginLeft: '10px', border: "1px solid red"}}>
+          *2 Multiply
+        </button>
+
       </div>
     </>
   )
