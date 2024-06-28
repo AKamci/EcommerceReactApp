@@ -20,4 +20,7 @@ Page.Aside = Aside;
 const Main = (props: { children?: React.ReactNode }) => <div className='col-8'>{props.children}</div>;
 Page.Main = Main;
 
+const Footer = (props: { children?: React.ReactNode }) => <div className='col-12'>{props.children}</div>;
+Page.Footer = Footer;
+
 export default Page;

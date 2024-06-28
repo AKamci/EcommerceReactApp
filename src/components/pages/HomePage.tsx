@@ -3,6 +3,7 @@ import Navbar from '../shared/Navbar';
 import BreadCrumb from '../shared/BreadCrumb';
 import CategoryList from '../left-nav/CategoryList';
 import ProductList from '../main/ProductList';
+import Footer from '../shared/Footer';
 
 const HomePage = () => {
 	return (
@@ -19,6 +20,10 @@ const HomePage = () => {
 			<Page.Main>
 				<ProductList />
 			</Page.Main>
+			<Page.Footer>
+				<Footer />
+			</Page.Footer>
+			
 		</Page>
 	);
 };
