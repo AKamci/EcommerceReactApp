@@ -1,6 +1,7 @@
 import Page from '../shared/Page';
 import Navbar from '../shared/Navbar';
 import BreadCrumb from '../shared/BreadCrumb';
+import Footer from '../shared/Footer';
 
 const AboutUs = () => {
 	return (
@@ -23,6 +24,9 @@ const AboutUs = () => {
 					PageMaker including versions of Lorem Ipsum.
 				</p>
 			</Page.Main>
+			<Page.Footer>
+				<Footer />
+			</Page.Footer>
 		</Page>
 	);
 };

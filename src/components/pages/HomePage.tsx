@@ -23,7 +23,6 @@ const HomePage = () => {
 			<Page.Footer>
 				<Footer />
 			</Page.Footer>
-			
 		</Page>
 	);
 };
