@@ -1,6 +1,5 @@
-import React from 'react';
-
 const BreadCrumb = () => {
+	console.log('BreadCrumb is rendered.');
 	return (
 		<nav aria-label='breadcrumb'>
 			<ol className='breadcrumb'>

@@ -6,6 +6,7 @@ import ProductList from '../main/ProductList';
 import Footer from '../shared/Footer';
 
 const HomePage = () => {
+	console.log('Homepage is rendered.');
 	return (
 		<Page>
 			<Page.Header>

@@ -1,19 +1,39 @@
+import { useEffect, useState } from 'react';
 import Product from '../product/Product';
+import { ProductDto } from '../../infrastructure/dtos/ProductDto';
+import { Result } from '../../infrastructure/shared/Result';
+import Endpoints from '../../infrastructure/helpers/api-endpoints';
+import axios from 'axios';
+import Spinner from '../shared/Spinner';
 
 const ProductList = () => {
-	const numbers = [1, 2, 3, 4, 5, 6];
+	console.log('CategoryList is rendered.');
+	const [products, setProducts] = useState<Result<Array<ProductDto>>>();
+	const [showSpinner, setShowSpinner] = useState(false);
+
+	useEffect(() => {
+		loadProducts();
+	}, []);
+
+	const loadProducts = () => {
+		setShowSpinner(true);
+		axios
+			.get<Result<Array<ProductDto>>>(Endpoints.Products.List)
+			.then((result) => {
+				setProducts(result.data);
+				setShowSpinner(false);
+			})
+			.catch((reason) => {
+				console.log(reason);
+			});
+	};
 	return (
 		<div className='container-fluid'>
 			<div className='row'>
-				{numbers.map((item) => (
-					<Product random={item} key={item} />
+				{showSpinner && <Spinner color='primary' />}
+				{products?.value.map((item) => (
+					<Product product={item} key={item.id} />
 				))}
-				{/* <Product random={1} />
-				<Product random={2} />
-				<Product random={3} />
-				<Product random={4} />
-				<Product random={5} />
-				<Product random={6} /> */}
 			</div>
 		</div>
 	);

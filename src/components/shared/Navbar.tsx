@@ -1,4 +1,5 @@
 const Navbar = () => {
+	console.log('Navbar is rendered.');
 	return (
 		<nav className='navbar navbar-expand-lg bg-body-tertiary'>
 			<div className='container-fluid'>
