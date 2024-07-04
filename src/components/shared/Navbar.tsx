@@ -59,7 +59,7 @@ const Navbar = () => {
 					</form>
 					<ul className='navbar-nav my-lg-0 navbar-nav-scroll'>
 						<li className='nav-item'>
-							<a className='nav-link active' aria-current='page' href='#'>
+							<a className='nav-link active' aria-current='page' href='/cart'>
 								Sepetim
 							</a>
 						</li>

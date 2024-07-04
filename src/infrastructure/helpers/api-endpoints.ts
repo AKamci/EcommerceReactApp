@@ -1,8 +1,10 @@
+const baseUrl = 'http://localhost:5021/api';
+
 export default {
 	Categories: {
-		List: 'http://localhost:5021/api/Categories',
+		List: `${baseUrl}/Categories`,
 	},
 	Products: {
-		List: 'http://localhost:5021/api/Products',
+		List: `${baseUrl}/Products`,
 	},
 };

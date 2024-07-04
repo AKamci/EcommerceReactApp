@@ -1,9 +1,14 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { ProductDto } from '../../infrastructure/dtos/ProductDto';
 import { faLiraSign } from '@fortawesome/free-solid-svg-icons';
+import { addToCart } from '../shared/Cart';
 
 const Product = (props: { product: ProductDto }) => {
 	console.log('Product is rendered.');
+	const handleAddToCart = () => {
+        addToCart(props.product); // Ürünü sepete eklemek için addToCart fonksiyonuna props.product'ı geçiyoruz
+    };
+
 	return (
 		<div className='col-4'>
 			<div className='card mb-2'>
@@ -18,7 +23,7 @@ const Product = (props: { product: ProductDto }) => {
 						{props.product.price} <FontAwesomeIcon icon={faLiraSign} />
 					</h6>
 					<p className='card-text'>{props.product.description}</p>
-					<a href='#' className='btn btn-primary'>
+					<a className='btn btn-primary' onClick={handleAddToCart}>
 						Sepete Ekle
 					</a>
 				</div>
@@ -26,5 +31,9 @@ const Product = (props: { product: ProductDto }) => {
 		</div>
 	);
 };
+
+
+
+
 
 export default Product;
