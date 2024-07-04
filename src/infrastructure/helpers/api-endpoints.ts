@@ -6,5 +6,6 @@ export default {
 	},
 	Products: {
 		List: `${baseUrl}/Products`,
+		GetAllByCategoryId: `${baseUrl}/Products/GetAllByCategoryId`,
 	},
 };

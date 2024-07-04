@@ -1,11 +1,11 @@
+import { NavLink } from 'react-router-dom';
+
 const Navbar = () => {
 	console.log('Navbar is rendered.');
 	return (
 		<nav className='navbar navbar-expand-lg bg-body-tertiary'>
 			<div className='container-fluid'>
-				<a className='navbar-brand' href='#'>
-					Navbar scroll
-				</a>
+				<NavLink to='/' className={'nav-link'} />
 				<button
 					className='navbar-toggler'
 					type='button'
@@ -19,39 +19,14 @@ const Navbar = () => {
 				<div className='collapse navbar-collapse' id='navbarScroll'>
 					<ul className='navbar-nav my-lg-0 navbar-nav-scroll'>
 						<li className='nav-item'>
-							<a className='nav-link' href='#'>
-								Link
-							</a>
+							<NavLink to='/' className={'nav-link'}>
+								Anasayfa
+							</NavLink>
 						</li>
-						<li className='nav-item dropdown'>
-							<a
-								className='nav-link dropdown-toggle'
-								href='#'
-								role='button'
-								data-bs-toggle='dropdown'
-								aria-expanded='false'>
-								Link
-							</a>
-							<ul className='dropdown-menu'>
-								<li>
-									<a className='dropdown-item' href='#'>
-										Action
-									</a>
-								</li>
-								<li>
-									<a className='dropdown-item' href='#'>
-										Another action
-									</a>
-								</li>
-								<li>
-									<hr className='dropdown-divider' />
-								</li>
-								<li>
-									<a className='dropdown-item' href='#'>
-										Something else here
-									</a>
-								</li>
-							</ul>
+						<li className='nav-item'>
+							<NavLink to='/about' className={'nav-link'}>
+								Hakkımızda
+							</NavLink>
 						</li>
 					</ul>
 					<form className='d-flex w-75' role='search'>
@@ -59,14 +34,14 @@ const Navbar = () => {
 					</form>
 					<ul className='navbar-nav my-lg-0 navbar-nav-scroll'>
 						<li className='nav-item'>
-							<a className='nav-link active' aria-current='page' href='/cart'>
+							<NavLink to='/cart' className={'nav-link'}>
 								Sepetim
-							</a>
+							</NavLink>
 						</li>
 						<li className='nav-item'>
-							<a className='nav-link' href='#'>
-								Üye Girişi
-							</a>
+							<NavLink to='/log-in' className={'nav-link'}>
+								Üye girişi
+							</NavLink>
 						</li>
 					</ul>
 				</div>

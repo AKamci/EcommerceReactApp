@@ -6,19 +6,23 @@ import Endpoints from '../../infrastructure/helpers/api-endpoints';
 import axios from 'axios';
 import Spinner from '../shared/Spinner';
 
-const ProductList = () => {
+const ProductList = (props: { categoryId: number | null }) => {
 	console.log('CategoryList is rendered.');
+	console.log('ProductList.categoryId :>> ', props.categoryId);
 	const [products, setProducts] = useState<Result<Array<ProductDto>>>();
 	const [showSpinner, setShowSpinner] = useState(false);
 
 	useEffect(() => {
 		loadProducts();
-	}, []);
+	}, [props.categoryId]);
 
 	const loadProducts = () => {
 		setShowSpinner(true);
+		const url = props.categoryId
+			? Endpoints.Products.GetAllByCategoryId + '/' + props.categoryId
+			: Endpoints.Products.List;
 		axios
-			.get<Result<Array<ProductDto>>>(Endpoints.Products.List)
+			.get<Result<Array<ProductDto>>>(url)
 			.then((result) => {
 				setProducts(result.data);
 				setShowSpinner(false);

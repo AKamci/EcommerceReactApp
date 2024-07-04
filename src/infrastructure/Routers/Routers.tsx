@@ -5,16 +5,16 @@ import Cart from '../../components/shared/Cart';
 
 const Routers = () => {
 	console.log('Routers is rendered.');
-    
-    return (
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/about" element={<AboutUs />} />
-            <Route path='/cart' element={<Cart />} />
-          </Routes>
-        </BrowserRouter>
-      );
+
+	return (
+		<BrowserRouter>
+			<Routes>
+				<Route path='/' element={<HomePage />} />
+				<Route path='/about' element={<AboutUs />} />
+				<Route path='/cart' element={<Cart />} />
+			</Routes>
+		</BrowserRouter>
+	);
 };
 
 export default Routers;
