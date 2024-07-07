@@ -9,15 +9,13 @@ const CategoryList = (props: { setCategory: React.Dispatch<React.SetStateAction<
 	console.log('CategoryList is rendered.');
 	const [categories, setCategories] = useState<Result<Array<CategoryDto>>>();
 	const [showSpinner, setShowSpinner] = useState(false);
+	const [activeButton, setActiveButton] = useState<number | null>(null); // Aktif buton durumunu takip etmek için state
 
 	useEffect(() => {
 		loadCategories();
 	}, []);
 
 	const loadCategories = () => {
-		// Component State -  Sadece bu bileşenden erişilir
-		// Global State - Tüm uygulamadan erişilir
-
 		setShowSpinner(true);
 		axios
 			.get<Result<Array<CategoryDto>>>(Endpoints.Categories.List)
@@ -30,19 +28,28 @@ const CategoryList = (props: { setCategory: React.Dispatch<React.SetStateAction<
 			});
 	};
 
+	const handleClick = (itemId: number | null) => {
+		setActiveButton(prevActiveButton => (prevActiveButton === itemId ? null : itemId));
+	};
+
 	return (
 		<div className='list-group'>
-			{/* <a href='#' className='list-group-item list-group-item-action active' aria-current='true'>
-				Elektronik
-			</a> */}
 			{showSpinner && <Spinner color='danger' />}
 			<a
 				href={'/kategoriler/'}
 				onClick={(e) => {
 					e.preventDefault();
 					props.setCategory(null);
+					handleClick(null);
 				}}
-				className='list-group-item list-group-item-action'>
+				className={`list-group-item list-group-item-action ${
+					activeButton === null ? 'active' : ''
+				}`}
+				style={{
+					backgroundColor: activeButton === null ? 'blue' : 'initial',
+					color: activeButton === null ? 'white' : 'initial'
+				}}
+			>
 				Tümü
 			</a>
 			{categories?.value.map((item) => (
@@ -52,8 +59,16 @@ const CategoryList = (props: { setCategory: React.Dispatch<React.SetStateAction<
 					onClick={(e) => {
 						e.preventDefault();
 						props.setCategory(item.id);
+						handleClick(item.id);
 					}}
-					className='list-group-item list-group-item-action'>
+					className={`list-group-item list-group-item-action ${
+						activeButton === item.id ? 'active' : ''
+					}`}
+					style={{
+						backgroundColor: activeButton === item.id ? 'blue' : 'initial',
+						color: activeButton === item.id ? 'white' : 'initial'
+					}}
+				>
 					{item.name}
 				</a>
 			))}
