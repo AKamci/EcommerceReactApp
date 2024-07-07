@@ -3,7 +3,7 @@ import Navbar from '../shared/Navbar';
 import BreadCrumb from '../shared/BreadCrumb';
 import Footer from '../shared/Footer';
 
-const AboutUs = () => {
+const AboutUsPage = () => {
 	return (
 		<Page>
 			<Page.Header>
@@ -12,8 +12,7 @@ const AboutUs = () => {
 			<Page.BreadCrumb>
 				<BreadCrumb />
 			</Page.BreadCrumb>
-			<Page.Aside>Sol menü</Page.Aside>
-			<Page.Main>
+			<Page.Main fullPage>
 				<h1>About Us</h1>
 				<p>
 					Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
@@ -31,4 +30,4 @@ const AboutUs = () => {
 	);
 };
 
-export default AboutUs;
+export default AboutUsPage;
