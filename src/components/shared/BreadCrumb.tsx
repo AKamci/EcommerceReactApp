@@ -1,7 +1,9 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 
 const BreadCrumb = () => {
+	const location = useLocation();
 	console.log('BreadCrumb is rendered.');
+
 	return (
 		<nav aria-label='breadcrumb'>
 			<ol className='breadcrumb'>
@@ -11,11 +13,9 @@ const BreadCrumb = () => {
 					</NavLink>
 				</li>
 				<li className='breadcrumb-item'>
-					<NavLink to='/kategoriler'>Kategoriler</NavLink>
+					<NavLink to='/'>{location.pathname.replace('/','').charAt(0).toUpperCase()}{location.pathname.slice(2)} </NavLink>
 				</li>
-				<li className='breadcrumb-item active' aria-current='page'>
-					Toys
-				</li>
+			
 			</ol>
 		</nav>
 	);

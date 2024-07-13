@@ -3,6 +3,7 @@ import { ProductDto } from '../../infrastructure/dtos/ProductDto';
 import { faLiraSign } from '@fortawesome/free-solid-svg-icons';
 import { addToCart } from '../pages/CartPage';
 import { NavLink } from 'react-router-dom';
+import { faTurkishLiraSign } from '@fortawesome/free-solid-svg-icons/faTurkishLiraSign';
 
 const Product = (props: { product: ProductDto }) => {
 	console.log('Product is rendered.');
@@ -23,7 +24,7 @@ const Product = (props: { product: ProductDto }) => {
 				<div className='card-body'>
 					<h5 className='card-title'>{props.product.name}</h5>
 					<h6 className='card-subtitle mb-2 text-body-secondary'>
-						{props.product.price} <FontAwesomeIcon icon={faLiraSign} />
+						{props.product.price} <FontAwesomeIcon icon={faTurkishLiraSign} />
 					</h6>
 					<p className='card-text'>{props.product.description}</p>
 					<a className='btn btn-primary' onClick={handleAddToCart}>
