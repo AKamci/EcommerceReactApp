@@ -9,6 +9,9 @@ import axios from 'axios';
 import Endpoints from '../../infrastructure/helpers/api-endpoints';
 import { Result } from '../../infrastructure/shared/Result';
 import { ProductDto } from '../../infrastructure/dtos/ProductDto';
+import AddToCart from '../product/AddToCart';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTurkishLiraSign } from '@fortawesome/free-solid-svg-icons';
 const ProductPage = () => {
 	const [product, setProduct] = useState<Result<ProductDto>>();
 	const { id } = useParams();
@@ -43,7 +46,29 @@ const ProductPage = () => {
 			</Page.BreadCrumb>
 			<Page.Aside>{product?.isSuccess && <CategoryList activeCategory={product?.value.categoryId} />}</Page.Aside>
 			<Page.Main>
-				<h1>{product?.value.name}</h1>
+				<div className='container'>
+					<div className='row'>
+						<div className='col'>
+							<h1>{product?.value.name}</h1>
+						</div>
+					</div>
+					<div className='row'>
+						<div className='col'>
+							<img
+								src={'https://picsum.photos/500/500?random=' + product?.value.id}
+								className='card-img-top'
+								alt={product?.value.name}
+							/>
+						</div>
+						<div className='col'>
+							<h2>
+								Fiyat: {product?.value.price} <FontAwesomeIcon icon={faTurkishLiraSign} />
+							</h2>
+							<p>{product?.value.description}</p>
+							<AddToCart product={product?.value as ProductDto} />
+						</div>
+					</div>
+				</div>
 			</Page.Main>
 			<Page.Footer>
 				<Footer />

@@ -3,11 +3,30 @@ import Page from '../shared/Page';
 import Navbar from '../shared/Navbar';
 import BreadCrumb from '../shared/BreadCrumb';
 import Footer from '../shared/Footer';
+import Endpoints from '../../infrastructure/helpers/api-endpoints';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
+import { CartDto } from '../../infrastructure/dtos/CartDto';
+import { Result } from '../../infrastructure/shared/Result';
 
 const CartPage = () => {
-	// cart as state variable.
-	console.log('Cart is rendered.');
-	console.log(cart);
+	const [cart, setCart] = useState<Result<CartDto>>();
+
+	useEffect(() => {
+		loadCart();
+	}, []);
+
+	const loadCart = () => {
+		axios
+			.post(Endpoints.Carts.GetCartOfCustomer + '?customerId=22')
+			.then((result) => {
+				console.log('result.data :>> ', result.data);
+				setCart(result.data);
+			})
+			.catch((reason) => {
+				console.log(reason);
+			});
+	};
 
 	return (
 		<Page>
@@ -30,15 +49,17 @@ const CartPage = () => {
 						</tr>
 					</thead>
 					<tbody>
-						{cart.map((item, index) => (
-							<tr>
-								<th scope='row'>{index + 1}</th>
-								<td>{item.name}</td>
-								<td>1</td>
-								<td>{item.price}</td>
-								<td>{item.price}</td>
-							</tr>
-						))}
+						{cart?.value != null &&
+							cart.value.cartItems.length > 0 &&
+							cart?.value?.cartItems?.map((item, index) => (
+								<tr>
+									<th scope='row'>{index + 1}</th>
+									<td>{item.product.name}</td>
+									<td>{item.quantity}</td>
+									<td>{item.product.price}</td>
+									<td>{item.quantity * item.product.price}</td>
+								</tr>
+							))}
 					</tbody>
 				</table>
 			</Page.Main>

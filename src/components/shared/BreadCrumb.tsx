@@ -3,6 +3,7 @@ import { NavLink, useLocation } from 'react-router-dom';
 const BreadCrumb = () => {
 	const location = useLocation();
 	console.log('BreadCrumb is rendered.');
+	const linkLabel = location.pathname.replace('/', '').charAt(0).toUpperCase() + location.pathname.slice(2);
 
 	return (
 		<nav aria-label='breadcrumb'>
@@ -13,9 +14,8 @@ const BreadCrumb = () => {
 					</NavLink>
 				</li>
 				<li className='breadcrumb-item'>
-					<NavLink to='/'>{location.pathname.replace('/','').charAt(0).toUpperCase()}{location.pathname.slice(2)} </NavLink>
+					<NavLink to='/'>{decodeURI(linkLabel)}</NavLink>
 				</li>
-			
 			</ol>
 		</nav>
 	);

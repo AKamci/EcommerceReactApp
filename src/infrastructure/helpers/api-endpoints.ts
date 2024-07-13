@@ -8,4 +8,9 @@ export default {
 		List: `${baseUrl}/Products`,
 		GetAllByCategoryId: `${baseUrl}/Products/GetAllByCategoryId`,
 	},
+	Carts: {
+		AddSingleProduct: `${baseUrl}/Carts/AddSingleProduct`,
+		Remove: `${baseUrl}/Carts`,
+		GetCartOfCustomer: `${baseUrl}/Carts/GetCartOfCustomer`,
+	},
 };

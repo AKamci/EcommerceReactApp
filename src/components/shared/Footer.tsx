@@ -1,8 +1,8 @@
 const Footer = () => {
 	console.log('CategoryList is rendered.');
 	return (
-		<footer style={{ backgroundColor: '#282c34', color: 'white', padding: '10px 20px', textAlign: 'center' }}>
-			<p>&copy; {new Date().getFullYear()} Your Company. All rights reserved.</p>
+		<footer className='mt-3 bg-dark px-3 py-2 text-center'>
+			<p className='text-bg-dark'>&copy; {new Date().getFullYear()} Your Company. All rights reserved.</p>
 			<nav>
 				<a href='/privacy' style={{ color: 'white', margin: '0 10px' }}>
 					Privacy Policy

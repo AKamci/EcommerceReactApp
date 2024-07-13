@@ -1,15 +1,11 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { ProductDto } from '../../infrastructure/dtos/ProductDto';
-import { faLiraSign } from '@fortawesome/free-solid-svg-icons';
-import { addToCart } from '../pages/CartPage';
 import { NavLink } from 'react-router-dom';
 import { faTurkishLiraSign } from '@fortawesome/free-solid-svg-icons/faTurkishLiraSign';
+import AddToCart from './AddToCart';
 
 const Product = (props: { product: ProductDto }) => {
 	console.log('Product is rendered.');
-	const handleAddToCart = () => {
-		addToCart(props.product); // Ürünü sepete eklemek için addToCart fonksiyonuna props.product'ı geçiyoruz
-	};
 
 	return (
 		<div className='col-4'>
@@ -27,9 +23,7 @@ const Product = (props: { product: ProductDto }) => {
 						{props.product.price} <FontAwesomeIcon icon={faTurkishLiraSign} />
 					</h6>
 					<p className='card-text'>{props.product.description}</p>
-					<a className='btn btn-primary' onClick={handleAddToCart}>
-						Sepete Ekle
-					</a>
+					<AddToCart product={props.product} />
 				</div>
 			</div>
 		</div>
