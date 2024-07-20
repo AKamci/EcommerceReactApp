@@ -19,7 +19,6 @@ const Routers = () => {
 				<Route path='/privacy' element={<PrivacyPolicyPage />} />
 				<Route path='/terms' element={<TermsOfServicePage />} />
 				<Route path='/contact' element={<ContactUsPage />} />
-
 			</Routes>
 		</BrowserRouter>
 	);
