@@ -2,6 +2,7 @@ import Page from '../shared/Page';
 import Navbar from '../shared/Navbar';
 import BreadCrumb from '../shared/BreadCrumb';
 import Footer from '../shared/Footer';
+import React from 'react';
 
 const AboutUsPage = () => {
 	return (
@@ -30,4 +31,4 @@ const AboutUsPage = () => {
 	);
 };
 
-export default AboutUsPage;
+export default React.memo(AboutUsPage);

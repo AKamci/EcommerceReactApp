@@ -3,6 +3,7 @@ import { ProductDto } from '../../infrastructure/dtos/ProductDto';
 import { NavLink } from 'react-router-dom';
 import { faTurkishLiraSign } from '@fortawesome/free-solid-svg-icons/faTurkishLiraSign';
 import AddToCart from './AddToCart';
+import React from 'react';
 
 const Product = (props: { product: ProductDto }) => {
 	console.log('Product is rendered.');
@@ -30,4 +31,4 @@ const Product = (props: { product: ProductDto }) => {
 	);
 };
 
-export default Product;
+export default React.memo(Product);

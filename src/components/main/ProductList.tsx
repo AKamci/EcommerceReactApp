@@ -5,10 +5,10 @@ import { Result } from '../../infrastructure/shared/Result';
 import Endpoints from '../../infrastructure/helpers/api-endpoints';
 import axios from 'axios';
 import Spinner from '../shared/Spinner';
+import React from 'react';
 
 const ProductList = (props: { categoryId: number | null }) => {
 	console.log('CategoryList is rendered.');
-	console.log('ProductList.categoryId :>> ', props.categoryId);
 	const [products, setProducts] = useState<Result<Array<ProductDto>>>();
 	const [showSpinner, setShowSpinner] = useState(false);
 
@@ -43,4 +43,4 @@ const ProductList = (props: { categoryId: number | null }) => {
 	);
 };
 
-export default ProductList;
+export default React.memo(ProductList);

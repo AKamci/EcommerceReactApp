@@ -12,6 +12,7 @@ import { ProductDto } from '../../infrastructure/dtos/ProductDto';
 import AddToCart from '../product/AddToCart';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTurkishLiraSign } from '@fortawesome/free-solid-svg-icons';
+import React from 'react';
 const ProductPage = () => {
 	const [product, setProduct] = useState<Result<ProductDto>>();
 	const { id } = useParams();
@@ -77,4 +78,4 @@ const ProductPage = () => {
 	);
 };
 
-export default ProductPage;
+export default React.memo(ProductPage);

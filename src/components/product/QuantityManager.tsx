@@ -31,4 +31,4 @@ const QuantityManager: React.FC<{
 	);
 };
 
-export default QuantityManager;
+export default React.memo(QuantityManager);

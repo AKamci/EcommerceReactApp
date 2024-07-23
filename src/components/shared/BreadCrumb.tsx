@@ -1,3 +1,4 @@
+import React from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 
 const BreadCrumb = () => {
@@ -21,4 +22,4 @@ const BreadCrumb = () => {
 	);
 };
 
-export default BreadCrumb;
+export default React.memo(BreadCrumb);

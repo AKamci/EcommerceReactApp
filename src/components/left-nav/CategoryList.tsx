@@ -1,9 +1,10 @@
 import axios from 'axios';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { Result } from '../../infrastructure/shared/Result';
 import { CategoryDto } from '../../infrastructure/dtos/CategoryDto';
 import Endpoints from '../../infrastructure/helpers/api-endpoints';
 import Spinner from '../shared/Spinner';
+import React from 'react';
 
 const CategoryList = (props: {
 	setCategory?: React.Dispatch<React.SetStateAction<number | null>>;
@@ -18,7 +19,7 @@ const CategoryList = (props: {
 		loadCategories();
 	}, []);
 
-	const loadCategories = () => {
+	const loadCategories = useCallback(() => {
 		setShowSpinner(true);
 		axios
 			.get<Result<Array<CategoryDto>>>(Endpoints.Categories.List)
@@ -29,7 +30,7 @@ const CategoryList = (props: {
 			.catch((reason) => {
 				console.log(reason);
 			});
-	};
+	}, []);
 
 	const handleClick = (itemId: number | null) => {
 		setActiveButton((prevActiveButton) => (prevActiveButton === itemId ? null : itemId));
@@ -68,4 +69,4 @@ const CategoryList = (props: {
 	);
 };
 
-export default CategoryList;
+export default React.memo(CategoryList);

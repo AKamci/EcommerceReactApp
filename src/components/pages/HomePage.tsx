@@ -5,6 +5,7 @@ import CategoryList from '../left-nav/CategoryList';
 import ProductList from '../main/ProductList';
 import Footer from '../shared/Footer';
 import { useState } from 'react';
+import React from 'react';
 
 const HomePage = () => {
 	const [activeCategory, setActiveCategory] = useState<number | null>(null);
@@ -30,4 +31,4 @@ const HomePage = () => {
 	);
 };
 
-export default HomePage;
+export default React.memo(HomePage);

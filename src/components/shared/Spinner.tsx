@@ -1,3 +1,5 @@
+import React from 'react';
+
 const Spinner = (props: { color?: 'primary' | 'secondary' | 'success' | 'danger' }) => {
 	const color = props.color != null ? props.color : 'primary';
 
@@ -8,4 +10,4 @@ const Spinner = (props: { color?: 'primary' | 'secondary' | 'success' | 'danger'
 	);
 };
 
-export default Spinner;
+export default React.memo(Spinner);

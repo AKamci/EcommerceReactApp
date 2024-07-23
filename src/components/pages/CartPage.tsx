@@ -8,6 +8,7 @@ import { useEffect, useState } from 'react';
 import { CartDto } from '../../infrastructure/dtos/CartDto';
 import { Result } from '../../infrastructure/shared/Result';
 import CartItem from '../cart/CartItem';
+import React from 'react';
 
 const CartPage = () => {
 	const [cart, setCart] = useState<Result<CartDto>>();
@@ -19,9 +20,8 @@ const CartPage = () => {
 
 	const loadCart = () => {
 		axios
-			.get(Endpoints.Carts.GetCartOfCustomerWithCustomerId + '?customerId=22')
+			.post(Endpoints.Carts.GetCartOfCustomer + '?customerId=22')
 			.then((result) => {
-				console.log('result.data :>> ', result.data);
 				setCart(result.data);
 			})
 			.catch((reason) => {
@@ -52,10 +52,7 @@ const CartPage = () => {
 					<tbody>
 						{cart?.value != null &&
 							cart.value.cartItems.length > 0 &&
-							cart?.value?.cartItems?.map((item, index) => <CartItem item={item} key={index} />)
-							
-							}
-							
+							cart?.value?.cartItems?.map((item, index) => <CartItem item={item} key={index} />)}
 					</tbody>
 				</table>
 			</Page.Main>
@@ -66,4 +63,4 @@ const CartPage = () => {
 	);
 };
 
-export default CartPage;
+export default React.memo(CartPage);

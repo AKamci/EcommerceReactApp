@@ -2,6 +2,7 @@ import Page from '../shared/Page';
 import Navbar from '../shared/Navbar';
 import BreadCrumb from '../shared/BreadCrumb';
 import Footer from '../shared/Footer';
+import React from 'react';
 
 const ContactUsPage = () => {
 	return (
@@ -13,16 +14,20 @@ const ContactUsPage = () => {
 				<BreadCrumb />
 			</Page.BreadCrumb>
 			<Page.Main fullPage>
-            <div>
-            <div className="mb-3">
-                <label htmlFor="exampleFormControlInput1" className="form-label">Email address</label>
-                <input type="email" className="form-control" id="exampleFormControlInput1" placeholder="name@example.com" />
-            </div>
-            <div className="mb-3">
-                <label htmlFor="exampleFormControlTextarea1" className="form-label">Sorunlarınız</label>
-                <textarea className="form-control" id="exampleFormControlTextarea1"></textarea>
-            </div>
-            </div>
+				<div>
+					<div className='mb-3'>
+						<label htmlFor='exampleFormControlInput1' className='form-label'>
+							Email address
+						</label>
+						<input type='email' className='form-control' id='exampleFormControlInput1' placeholder='name@example.com' />
+					</div>
+					<div className='mb-3'>
+						<label htmlFor='exampleFormControlTextarea1' className='form-label'>
+							Sorunlarınız
+						</label>
+						<textarea className='form-control' id='exampleFormControlTextarea1'></textarea>
+					</div>
+				</div>
 			</Page.Main>
 			<Page.Footer>
 				<Footer />
@@ -31,4 +36,4 @@ const ContactUsPage = () => {
 	);
 };
 
-export default ContactUsPage;
+export default React.memo(ContactUsPage);

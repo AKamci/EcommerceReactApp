@@ -6,6 +6,7 @@ import ProductPage from '../../components/pages/ProductPage';
 import PrivacyPolicyPage from '../../components/pages/PrivacyPolicyPage';
 import TermsOfServicePage from '../../components/pages/TermsOfServicePage';
 import ContactUsPage from '../../components/pages/ContactUsPage';
+import React from 'react';
 
 const Routers = () => {
 	console.log('Routers is rendered.');
@@ -24,4 +25,4 @@ const Routers = () => {
 	);
 };
 
-export default Routers;
+export default React.memo(Routers);

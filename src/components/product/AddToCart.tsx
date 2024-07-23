@@ -32,4 +32,4 @@ const AddToCart: React.FC<{ product: ProductDto }> = ({ product }) => {
 	);
 };
 
-export default AddToCart;
+export default React.memo(AddToCart);
