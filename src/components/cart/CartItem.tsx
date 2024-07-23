@@ -7,10 +7,13 @@ import axios from 'axios';
 import Endpoints from '../../infrastructure/helpers/api-endpoints';
 
 const CartItem: React.FC<{ item: CartItemDto }> = ({ item }) => {
-	const [quantity, setQuantity] = useState(1);
+	const [quantity, setQuantity] = useState(item.quantity); // Sepetime gelince default alınan yer
+
+	console.log("CartItem is Rendered.")
 
 	useEffect(() => {
 		if (quantity != item.quantity) {
+			console.log("Update-Quantity: ", quantity)
 			updateProductQuantity();
 		}
 	}, [quantity]);

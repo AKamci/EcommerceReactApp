@@ -6,6 +6,7 @@ import QuantityManager from './QuantityManager';
 
 const AddToCart: React.FC<{ product: ProductDto }> = ({ product }) => {
 	const [quantity, setQuantity] = useState(1);
+	console.log('Add To Cart is Rendered.');
 
 	const addToCart = () => {
 		axios

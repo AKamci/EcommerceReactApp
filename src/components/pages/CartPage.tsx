@@ -11,6 +11,7 @@ import CartItem from '../cart/CartItem';
 
 const CartPage = () => {
 	const [cart, setCart] = useState<Result<CartDto>>();
+	console.log('Cart Page is Rendered');
 
 	useEffect(() => {
 		loadCart();
@@ -18,7 +19,7 @@ const CartPage = () => {
 
 	const loadCart = () => {
 		axios
-			.post(Endpoints.Carts.GetCartOfCustomer + '?customerId=22')
+			.get(Endpoints.Carts.GetCartOfCustomerWithCustomerId + '?customerId=22')
 			.then((result) => {
 				console.log('result.data :>> ', result.data);
 				setCart(result.data);
@@ -51,7 +52,10 @@ const CartPage = () => {
 					<tbody>
 						{cart?.value != null &&
 							cart.value.cartItems.length > 0 &&
-							cart?.value?.cartItems?.map((item, index) => <CartItem item={item} key={index} />)}
+							cart?.value?.cartItems?.map((item, index) => <CartItem item={item} key={index} />)
+							
+							}
+							
 					</tbody>
 				</table>
 			</Page.Main>

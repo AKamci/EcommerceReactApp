@@ -13,5 +13,6 @@ export default {
 		RemoveProduct: `${baseUrl}/Carts/RemoveProduct`,
 		GetCartOfCustomer: `${baseUrl}/Carts/GetCartOfCustomer`,
 		UpdateCartItemQuantity: `${baseUrl}/Carts/UpdateCartItemQuantity`,
+		GetCartOfCustomerWithCustomerId : `${baseUrl}/Carts/GetCartOfCustomerWithCustomerId`
 	},
 };
