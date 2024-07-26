@@ -1,69 +1,53 @@
-import axios from 'axios';
-import { useCallback, useEffect, useState } from 'react';
-import { Result } from '../../infrastructure/shared/Result';
-import { CategoryDto } from '../../infrastructure/dtos/CategoryDto';
-import Endpoints from '../../infrastructure/helpers/api-endpoints';
+import { useEffect } from 'react';
 import Spinner from '../shared/Spinner';
 import React from 'react';
+import { useAppDispatch, useAppSelector } from '../../infrastructure/store/store';
+import ApiState from '../../infrastructure/enums/ApiState';
+import { loadCategories, setActiveCategory } from '../../infrastructure/store/slices/categories-slice';
 
-const CategoryList = (props: {
-	setCategory?: React.Dispatch<React.SetStateAction<number | null>>;
-	activeCategory?: number;
-}) => {
+const CategoryList = () => {
+	const dispatch = useAppDispatch();
 	console.log('CategoryList is rendered.');
-	const [categories, setCategories] = useState<Result<Array<CategoryDto>>>();
-	const [showSpinner, setShowSpinner] = useState(false);
-	const [activeButton, setActiveButton] = useState<number | null | undefined>(props.activeCategory); // Aktif buton durumunu takip etmek için state
+	const state = useAppSelector((state) => state.categories.state);
+	const categories = useAppSelector((state) => state.categories.categories);
+	const activeCategory = useAppSelector((state) => state.categories.activeCategory);
+	console.log('categoriess :>> ', categories);
 
 	useEffect(() => {
-		loadCategories();
-	}, []);
-
-	const loadCategories = useCallback(() => {
-		setShowSpinner(true);
-		axios
-			.get<Result<Array<CategoryDto>>>(Endpoints.Categories.List)
-			.then((result) => {
-				setCategories(result.data);
-				setShowSpinner(false);
-			})
-			.catch((reason) => {
-				console.log(reason);
-			});
-	}, []);
-
-	const handleClick = (itemId: number | null) => {
-		setActiveButton((prevActiveButton) => (prevActiveButton === itemId ? null : itemId));
-	};
+		if (state == ApiState.Idle) {
+			dispatch(loadCategories());
+		}
+	}, [state]);
 
 	return (
 		<aside>
 			<h3>Kategoriler</h3>
 			<div className='list-group'>
-				{showSpinner && <Spinner color='primary' />}
+				{state == ApiState.Pending && <Spinner color='primary' />}
 				<a
 					href={'/kategoriler/'}
 					onClick={(e) => {
 						e.preventDefault();
-						if (props.setCategory) props.setCategory(null);
-						handleClick(null);
+						dispatch(setActiveCategory(null));
 					}}
-					className={`list-group-item list-group-item-action ${activeButton === (null || undefined) ? 'active' : ''}`}>
+					className={`list-group-item list-group-item-action ${
+						activeCategory === (null || undefined) ? 'active' : ''
+					}`}>
 					Tümü
 				</a>
-				{categories?.value.map((item) => (
-					<a
-						key={item.id}
-						href={'/kategoriler/' + item.id}
-						onClick={(e) => {
-							e.preventDefault();
-							if (props.setCategory) props.setCategory(item.id);
-							handleClick(item.id);
-						}}
-						className={`list-group-item list-group-item-action ${activeButton === item.id ? 'active' : ''}`}>
-						{item.name}
-					</a>
-				))}
+				{categories.isSuccess &&
+					categories?.value.map((item) => (
+						<a
+							key={item.id}
+							href={'/kategoriler/' + item.id}
+							onClick={(e) => {
+								e.preventDefault();
+								dispatch(setActiveCategory(item.id));
+							}}
+							className={`list-group-item list-group-item-action ${activeCategory === item.id ? 'active' : ''}`}>
+							{item.name}
+						</a>
+					))}
 			</div>
 		</aside>
 	);
