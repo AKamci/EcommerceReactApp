@@ -4,11 +4,9 @@ import BreadCrumb from '../shared/BreadCrumb';
 import CategoryList from '../left-nav/CategoryList';
 import ProductList from '../main/ProductList';
 import Footer from '../shared/Footer';
-import { useState } from 'react';
 import React from 'react';
 
 const HomePage = () => {
-	const [activeCategory, setActiveCategory] = useState<number | null>(null);
 	console.log('Homepage is rendered.');
 	return (
 		<Page>
@@ -19,10 +17,10 @@ const HomePage = () => {
 				<BreadCrumb />
 			</Page.BreadCrumb>
 			<Page.Aside>
-				<CategoryList setCategory={setActiveCategory} />
+				<CategoryList />
 			</Page.Aside>
 			<Page.Main>
-				<ProductList categoryId={activeCategory} />
+				<ProductList />
 			</Page.Main>
 			<Page.Footer>
 				<Footer />
