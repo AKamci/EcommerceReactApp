@@ -3,11 +3,13 @@ import { thunk } from 'redux-thunk';
 import categoriesSlice from './slices/categories-slice';
 import productsSlice from './slices/products-slice';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
+import cartSlice from './slices/cart-slice';
 
 const store = configureStore({
 	reducer: {
 		categories: categoriesSlice,
 		products: productsSlice,
+		carts : cartSlice,
 	},
 	middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(thunk),
 });
