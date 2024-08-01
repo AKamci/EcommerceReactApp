@@ -6,12 +6,12 @@ import { CategoryDto } from '../../dtos/CategoryDto';
 import ApiState from '../../enums/ApiState';
 
 export interface CategoryState {
-	categories: Result<Array<CategoryDto>>;
-	activeCategory: number;
+	data: Result<Array<CategoryDto>>;
+	activeCategory: number | null;
 	state: ApiState;
 }
 
-const initialState = { state: ApiState.Idle } as CategoryState;
+const initialState = { state: ApiState.Idle, activeCategory: null } as CategoryState;
 
 export const loadCategories: AsyncThunk<Result<Array<CategoryDto>>, void, CategoryState> = createAsyncThunk(
 	'categories/getAll',
@@ -29,7 +29,8 @@ const categoriesSlice = createSlice({
 			state.state = ApiState.Pending;
 		});
 		builder.addCase(loadCategories.fulfilled, (state, action) => {
-			state.categories = action.payload;
+			state.data = action.payload;
+			state.state = ApiState.Fulfilled;
 		});
 		builder.addCase(loadCategories.rejected, (state, action) => {
 			state.state = ApiState.Rejected;

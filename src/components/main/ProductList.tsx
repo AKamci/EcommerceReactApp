@@ -1,40 +1,34 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import Product from '../product/Product';
-import { ProductDto } from '../../infrastructure/dtos/ProductDto';
-import { Result } from '../../infrastructure/shared/Result';
-import Endpoints from '../../infrastructure/helpers/api-endpoints';
-import axios from 'axios';
 import Spinner from '../shared/Spinner';
 import React from 'react';
+import { useAppDispatch, useAppSelector } from '../../infrastructure/store/store';
+import { loadProducts } from '../../infrastructure/store/slices/products-slice';
+import ApiState from '../../infrastructure/enums/ApiState';
 
-const ProductList = (props: { categoryId: number | null }) => {
+const ProductList = () => {
 	console.log('CategoryList is rendered.');
-	const [products, setProducts] = useState<Result<Array<ProductDto>>>();
-	const [showSpinner, setShowSpinner] = useState(false);
+	const dispatch = useAppDispatch();
+	const state = useAppSelector((state) => state.products.state);
+	const products = useAppSelector((state) => state.products.data);
+	const activeCategory = useAppSelector((state) => state.categories.activeCategory);
 
 	useEffect(() => {
-		loadProducts();
-	}, [props.categoryId]);
+		if (state == ApiState.Idle) {
+			dispatch(loadProducts({ activeCategory: null }));
+		}
+	}, [state]);
 
-	const loadProducts = () => {
-		setShowSpinner(true);
-		const url = props.categoryId
-			? Endpoints.Products.GetAllByCategoryId + '/' + props.categoryId
-			: Endpoints.Products.List;
-		axios
-			.get<Result<Array<ProductDto>>>(url)
-			.then((result) => {
-				setProducts(result.data);
-				setShowSpinner(false);
-			})
-			.catch((reason) => {
-				console.log(reason);
-			});
-	};
+	useEffect(() => {
+		if (state == ApiState.Fulfilled && activeCategory != null) {
+			dispatch(loadProducts({ activeCategory }));
+		}
+	}, [activeCategory]);
+
 	return (
 		<div className='container-fluid'>
 			<div className='row'>
-				{showSpinner && <Spinner color='primary' />}
+				{state == ApiState.Pending && <Spinner color='primary' />}
 				{products?.value.map((item) => (
 					<Product product={item} key={item.id} />
 				))}

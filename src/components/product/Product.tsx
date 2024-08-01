@@ -6,7 +6,7 @@ import AddToCart from './AddToCart';
 import React from 'react';
 
 const Product = (props: { product: ProductDto }) => {
-	console.log('Product is rendered.');
+	console.log('Product is rendered: ' + props.product.id);
 
 	return (
 		<div className='col-4'>

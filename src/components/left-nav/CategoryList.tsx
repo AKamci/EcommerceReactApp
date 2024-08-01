@@ -9,9 +9,8 @@ const CategoryList = () => {
 	const dispatch = useAppDispatch();
 	console.log('CategoryList is rendered.');
 	const state = useAppSelector((state) => state.categories.state);
-	const categories = useAppSelector((state) => state.categories.categories);
+	const categories = useAppSelector((state) => state.categories.data);
 	const activeCategory = useAppSelector((state) => state.categories.activeCategory);
-	console.log('categoriess :>> ', categories);
 
 	useEffect(() => {
 		if (state == ApiState.Idle) {
@@ -30,12 +29,10 @@ const CategoryList = () => {
 						e.preventDefault();
 						dispatch(setActiveCategory(null));
 					}}
-					className={`list-group-item list-group-item-action ${
-						activeCategory === (null || undefined) ? 'active' : ''
-					}`}>
+					className={`list-group-item list-group-item-action ${activeCategory === null ? 'active' : ''}`}>
 					Tümü
 				</a>
-				{categories.isSuccess &&
+				{categories?.isSuccess &&
 					categories?.value.map((item) => (
 						<a
 							key={item.id}
