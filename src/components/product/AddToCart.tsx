@@ -3,6 +3,7 @@ import { ProductDto } from '../../infrastructure/dtos/ProductDto';
 import axios from 'axios';
 import Endpoints from '../../infrastructure/helpers/api-endpoints';
 import QuantityManager from './QuantityManager';
+import { toast } from 'react-toastify';
 
 const AddToCart: React.FC<{ product: ProductDto }> = ({ product }) => {
 	const [quantity, setQuantity] = useState(1);
@@ -16,9 +17,11 @@ const AddToCart: React.FC<{ product: ProductDto }> = ({ product }) => {
 			})
 			.then((result) => {
 				console.log(result);
+				toast.success('Ürün sepete eklendi.');
 			})
 			.catch((reason) => {
 				console.log(reason);
+				toast.error('Ürün sepete eklenemedi.');
 			});
 	};
 

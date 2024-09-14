@@ -7,16 +7,16 @@ import { loadCategories, setActiveCategory } from '../../infrastructure/store/sl
 
 const CategoryList = () => {
 	const dispatch = useAppDispatch();
-	console.log('CategoryList is rendered.');
 	const state = useAppSelector((state) => state.categories.state);
 	const categories = useAppSelector((state) => state.categories.data);
 	const activeCategory = useAppSelector((state) => state.categories.activeCategory);
+	console.log('CategoryList is rendered: ', state);
 
 	useEffect(() => {
 		if (state == ApiState.Idle) {
 			dispatch(loadCategories());
 		}
-	}, [state]);
+	}, []);
 
 	return (
 		<aside>

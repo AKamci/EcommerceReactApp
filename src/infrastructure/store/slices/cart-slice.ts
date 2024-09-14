@@ -10,18 +10,12 @@ export interface CartState {
 	state: ApiState;
 }
 
-const initialState = { state: ApiState.Idle} as CartState;
+const initialState = { state: ApiState.Idle } as CartState;
 
-export const loadCarts: AsyncThunk<Result<CartDto>, void, CartState> = createAsyncThunk(
-	'carts/id',
-	async () => {
-		const response = await axios.post<Result<CartDto>>(Endpoints.Carts.GetCartOfCustomer+'?customerId=22');
-		console.log("Response : ", response)
-		return response.data;
-	}
-);
-
-console.log("loadCarts", loadCarts)
+export const loadCarts: AsyncThunk<Result<CartDto>, void, CartState> = createAsyncThunk('carts/id', async () => {
+	const response = await axios.post<Result<CartDto>>(Endpoints.Carts.GetCartOfCustomer + '?customerId=22');
+	return response.data;
+});
 
 const cartsSlice = createSlice({
 	name: 'carts',
@@ -38,10 +32,7 @@ const cartsSlice = createSlice({
 			state.state = ApiState.Rejected;
 		});
 	},
-	reducers: {
-		
-	},
+	reducers: {},
 });
-
 
 export default cartsSlice.reducer;

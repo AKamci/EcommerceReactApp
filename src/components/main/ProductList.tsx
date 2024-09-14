@@ -17,10 +17,10 @@ const ProductList = () => {
 		if (state == ApiState.Idle) {
 			dispatch(loadProducts({ activeCategory: null }));
 		}
-	}, [state]);
+	}, []);
 
 	useEffect(() => {
-		if (state == ApiState.Fulfilled && activeCategory != null) {
+		if (state == ApiState.Fulfilled) {
 			dispatch(loadProducts({ activeCategory }));
 		}
 	}, [activeCategory]);

@@ -45,7 +45,7 @@ const ProductPage = () => {
 			<Page.BreadCrumb>
 				<BreadCrumb />
 			</Page.BreadCrumb>
-			<Page.Aside>{product?.isSuccess && <CategoryList/>}</Page.Aside>
+			<Page.Aside>{product?.isSuccess && <CategoryList />}</Page.Aside>
 			<Page.Main>
 				<div className='container'>
 					<div className='row'>

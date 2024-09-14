@@ -6,8 +6,12 @@ import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
 import Endpoints from '../../infrastructure/helpers/api-endpoints';
 import { faTurkishLiraSign } from '@fortawesome/free-solid-svg-icons/faTurkishLiraSign';
+import { useAppDispatch } from '../../infrastructure/store/store';
+import { loadCarts } from '../../infrastructure/store/slices/cart-slice';
+import { toast } from 'react-toastify';
 
 const CartItem: React.FC<{ item: CartItemDto }> = ({ item }) => {
+	const dispatch = useAppDispatch();
 	const [quantity, setQuantity] = useState(item.quantity); // Sepetime gelince default alınan yer
 
 	console.log('CartItem is Rendered.');
@@ -39,6 +43,8 @@ const CartItem: React.FC<{ item: CartItemDto }> = ({ item }) => {
 			.delete(`${Endpoints.Carts.RemoveProduct}/${productId}`)
 			.then((result) => {
 				console.log('result :>> ', result);
+				dispatch(loadCarts());
+				toast.success('Ürün silindi.');
 			})
 			.catch((reason) => {
 				console.log(reason);
